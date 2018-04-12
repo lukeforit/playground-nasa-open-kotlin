@@ -9,7 +9,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "test.kotlin_time"
+        applicationId "com.rabbit.green.nasaopen"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
@@ -23,8 +23,21 @@ android {
         }
     }
 
-    buildTypes.each {
-        it.buildConfigField("String", "BASE_URL", "\"https://base.url/\"")
+    productFlavors {
+        prod {
+            buildConfigField("String", "apiKey", "\"DEMO_KEY\"")
+            buildConfigField("String", "baseUrl", "\"https://api.nasa.gov/planetary/\"")
+        }
+        dev {
+            buildConfigField("String", "apiKey", "\"\"")
+            buildConfigField("String", "baseUrl", "\"http://localhost:8080/\"")
+        }
+    }
+
+    flavorDimensions "default"
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -55,10 +68,11 @@ dependencies {
     implementation "com.android.support:design:$supportLib"
     implementation "com.android.support:recyclerview-v7:$supportLib"
 
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpClient"
 
     implementation "io.reactivex.rxjava2:rxjava:$rxJava"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid"
@@ -72,12 +86,8 @@ dependencies {
 
     implementation "com.google.dagger:dagger:$dagger"
     kapt "com.google.dagger:dagger-compiler:$dagger"
-//    annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
+    kapt "com.google.dagger:dagger-android-processor:$dagger"
 
-    implementation "org.parceler:parceler-api:$parceler"
-    annotationProcessor "org.parceler:parceler:$parceler"
-
-    testImplementation "org.mockito:mockito-core:$mockitoUnit"
     testImplementation "com.squareup.okhttp3:mockwebserver:$okHttpClient"
     testImplementation "junit:junit:$jUnit"
 
