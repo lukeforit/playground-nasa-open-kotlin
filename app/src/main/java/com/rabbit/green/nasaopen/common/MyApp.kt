@@ -2,10 +2,10 @@ package com.rabbit.green.nasaopen.common
 
 import android.app.Activity
 import android.app.Application
+import com.rabbit.green.nasaopen.di.DaggerMyAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import test.kotlin_time.di.DaggerMyAppComponent
 import com.rabbit.green.nasaopen.di.MyAppComponent
 import javax.inject.Inject
 

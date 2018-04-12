@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">kotlin-time</string>
+    <string name="app_name">A picture of the day</string>
     <string name="action_settings">Settings</string>
 </resources>

@@ -4,7 +4,9 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import com.rabbit.green.nasaopen.common.MyApp
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = arrayOf(
         MyAppModule::class,
         AndroidInjectionModule::class,
